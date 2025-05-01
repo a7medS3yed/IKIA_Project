@@ -1,9 +1,19 @@
+using DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
+#region Configure Service
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(); 
+
+builder.Services.AddPersistanceService(builder.Configuration);
+
+#endregion
 
 var app = builder.Build();
+
+#region Configure
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -23,7 +33,9 @@ app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    .WithStaticAssets(); 
+
+#endregion
 
 
 app.Run();
