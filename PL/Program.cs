@@ -1,4 +1,5 @@
 using DAL;
+using PL.Extention;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,12 @@ builder.Services.AddPersistanceService(builder.Configuration);
 #endregion
 
 var app = builder.Build();
+
+#region InitializeDatabase
+
+app.InitializeDatabase();
+
+#endregion
 
 #region Configure
 
