@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using DAL.Contracts;
 using DAL.Entities.Departments;
+using DAL.Entities.Employees;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Persistance.Data.DbInitializer
@@ -37,6 +38,18 @@ namespace DAL.Persistance.Data.DbInitializer
                 if (departments is not null)
                 {
                     _dbContext.Departments.AddRange(departments);
+                    _dbContext.SaveChanges();
+                }
+            }
+
+            if (!_dbContext.Employees.Any())
+            {
+                var employeeData = File.ReadAllText("../DAL/Persistance/Data/Seeds/employees.json");
+                var employees = JsonSerializer.Deserialize<List<Employee>>(employeeData, options);
+
+                if (employees is not null)
+                {
+                    _dbContext.Employees.AddRange(employees);
                     _dbContext.SaveChanges();
                 }
             }
