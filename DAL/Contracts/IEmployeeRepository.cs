@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Entities.Departments;
+using DAL.Entities.Employees;
 
 namespace DAL.Contracts
 {
-    public interface IDepartmentRepository : IGenaricRepository<Department, int>
+    public interface IEmployeeRepository : IGenaricRepository<Employee, int>
     {
-        
     }
 }

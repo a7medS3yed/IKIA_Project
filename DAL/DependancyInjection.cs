@@ -24,6 +24,7 @@ namespace DAL
 
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             
 
             return services;
