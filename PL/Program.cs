@@ -1,9 +1,28 @@
+using BLL.Service.Departments;
+using DAL;
+using PL.Extention;
+
 var builder = WebApplication.CreateBuilder(args);
 
+#region Configure Service
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(); 
+
+builder.Services.AddPersistanceService(builder.Configuration);
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
+#endregion
 
 var app = builder.Build();
+
+#region InitializeDatabase
+
+app.InitializeDatabase();
+
+#endregion
+
+#region Configure
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -23,7 +42,9 @@ app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    .WithStaticAssets(); 
+
+#endregion
 
 
 app.Run();
