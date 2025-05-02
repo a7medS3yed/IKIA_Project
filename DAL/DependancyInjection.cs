@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Contracts;
 using DAL.Persistance.Data;
+using DAL.Persistance.Data.DbInitializer;
 using DAL.Persistance.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,9 @@ namespace DAL
             services.AddDbContext<ApplicationDbContext>(options =>
               options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            
 
             return services;
         }

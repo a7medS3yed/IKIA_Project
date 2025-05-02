@@ -1,3 +1,4 @@
+using BLL.Service.Departments;
 using DAL;
 using PL.Extention;
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews(); 
 
 builder.Services.AddPersistanceService(builder.Configuration);
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 #endregion
 
