@@ -22,7 +22,7 @@ namespace BLL.Service.Departments
 
         public DepartmentDetailsDto? GetDepartmentById(int id)
         {
-            var department = _departmentRepository.GetById(id);
+            var department = _departmentRepository.Get(id);
 
             if (department is null)
                 return null;
@@ -42,7 +42,7 @@ namespace BLL.Service.Departments
                 LastModifiedBy = ""
             };
 
-            return _departmentRepository.Add(newDepartment);
+            return _departmentRepository.Create(newDepartment);
         }
 
         public int UpdateDepartment(UpdatingDepartmentDto department)
