@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Persistance.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250502124049_EmployeeModule")]
+    [Migration("20250502214547_EmployeeModule")]
     partial class EmployeeModule
     {
         /// <inheritdoc />
@@ -135,7 +135,7 @@ namespace DAL.Persistance.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("getdate()");
 
-                    b.Property<string>("LaststName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 

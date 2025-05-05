@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DAL.Contracts;
 using DAL.Entities.Departments;
@@ -27,7 +28,13 @@ namespace DAL.Persistance.Data.DbInitializer
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
-                //Converters = { new DateOnlyJsonConverter() } // Register the custom converter
+                Converters =
+                {
+                    new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false),
+                    //new DateOnlyJsonConverter() // if you're also handling DateOnly
+                }
+
+
             };
 
             if (!_dbContext.Departments.Any())

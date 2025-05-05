@@ -16,7 +16,7 @@ namespace BLL.Service.Employees
             var employees = _employeeRepository.GetAll();
 
             foreach (var employee in employees)
-                yield return new EmployeeDto(employee.Id, employee.FirstName, employee.LaststName, employee.Age, employee.Salary, employee.IsActice, employee.Email, employee.Gender.ToString(), employee.EmployeeType.ToString());
+                yield return new EmployeeDto(employee.Id, employee.FirstName, employee.LastName, employee.Age, employee.Salary, employee.IsActice, employee.Email, employee.Gender.ToString(), employee.EmployeeType.ToString());
         }
 
         public EmployeeDetailsDto? GetEmployeeById(int id)
@@ -26,7 +26,7 @@ namespace BLL.Service.Employees
             if (employee == null)
                 return null;
 
-            return new EmployeeDetailsDto(employee.Id, employee.FirstName, employee.LaststName, employee.Age, employee.Address, employee.Salary, employee.IsActice,
+            return new EmployeeDetailsDto(employee.Id, employee.FirstName, employee.LastName, employee.Age, employee.Address, employee.Salary, employee.IsActice,
                 employee.Email, employee.PhoneNumber, employee.HiringDate, employee.Gender.ToString(), employee.EmployeeType.ToString(), employee.CreatedBy, employee
                 .CreatedOn, employee.LastModifiedBy, employee.LastModifiedOn);
         }
@@ -36,7 +36,7 @@ namespace BLL.Service.Employees
             var creationEmployee = new Employee()
             {
                 FirstName = employee.FirstName,
-                LaststName = employee.LastName,
+                LastName = employee.LastName,
                 Age = employee.Age ?? 0,
                 Address = employee.Address,
                 Salary = employee.Salary,
@@ -59,7 +59,7 @@ namespace BLL.Service.Employees
             {
                 Id = employee.Id,
                 FirstName = employee.FirstName,
-                LaststName = employee.LastName,
+                LastName = employee.LastName,
                 Age = employee.Age ?? 0,
                 Address = employee.Address,
                 Salary = employee.Salary,

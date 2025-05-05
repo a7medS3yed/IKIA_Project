@@ -1,6 +1,8 @@
 using BLL.Service.Departments;
+using BLL.Service.Employees;
 using DAL;
 using PL.Extention;
+using PL.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddPersistanceService(builder.Configuration);
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 #endregion
 

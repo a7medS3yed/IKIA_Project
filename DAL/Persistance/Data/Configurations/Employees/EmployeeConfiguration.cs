@@ -18,7 +18,7 @@ namespace DAL.Persistance.Data.Configurations.Employees
             base.Configure(builder);
 
             builder.Property(E => E.FirstName).HasColumnType("varchar(50)");
-            builder.Property(E => E.LaststName).HasColumnType("varchar(50)");
+            builder.Property(E => E.LastName).HasColumnType("varchar(50)");
             builder.Property(E => E.Address).HasMaxLength(100);
             builder.Property(E => E.HiringDate).HasDefaultValueSql("GETDATE()");
             builder.Property(E => E.Salary).HasPrecision(18, 2);

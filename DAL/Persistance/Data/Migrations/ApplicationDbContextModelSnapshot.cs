@@ -132,7 +132,7 @@ namespace DAL.Persistance.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("getdate()");
 
-                    b.Property<string>("LaststName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 

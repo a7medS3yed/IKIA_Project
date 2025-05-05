@@ -12,7 +12,7 @@ namespace DAL.Entities.Employees
     public class Employee : BaseEntity<int>
     {
         public required string FirstName { get; set; }
-        public required string LaststName { get; set; }
+        public required string LastName { get; set; }
         public int Age { get; set; }
         public string? Email { get; set; }
         public decimal Salary { get; set; }
