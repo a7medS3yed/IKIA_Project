@@ -1,6 +1,7 @@
 using BLL.Service.Departments;
 using BLL.Service.Employees;
 using DAL;
+using Microsoft.AspNetCore.Mvc;
 using PL.Extention;
 using PL.Profiles;
 
@@ -9,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 #region Configure Service
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(); 
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+}); 
 
 builder.Services.AddPersistanceService(builder.Configuration);
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
