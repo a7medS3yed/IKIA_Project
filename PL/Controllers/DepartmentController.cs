@@ -96,7 +96,7 @@ namespace PL.Controllers
         #region Update
 
         [HttpGet]
-        public IActionResult Update(int? id)
+        public IActionResult Edit(int? id)
         {
             if (!id.HasValue)
                 return BadRequest();
@@ -118,7 +118,7 @@ namespace PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update([FromRoute] int id ,UpdatingDepartmentViewModel model)
+        public IActionResult Edit([FromRoute] int id ,UpdatingDepartmentViewModel model)
         {
             var message = "Failed to Update Department";
             try
