@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities.Common;
+using DAL.Entities.Departments;
 using DAL.Enums;
 
 namespace DAL.Entities.Employees
@@ -22,5 +23,9 @@ namespace DAL.Entities.Employees
         public DateOnly HiringDate { get; set; }
         public Gender Gender { get; set; }
         public EmployeeType EmployeeType { get; set; }
+
+        public int? DepartmentId { get; set; }
+        // Navigational Property
+        public Department? Department { get; set; }
     }
 }

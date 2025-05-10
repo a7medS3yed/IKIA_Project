@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities.Common;
+using DAL.Entities.Employees;
 
 namespace DAL.Entities.Departments
 {
@@ -13,5 +14,8 @@ namespace DAL.Entities.Departments
         public required string Code { get; set; }
         public string? Description { get; set; }
         public DateOnly CreationDate { get; set; }
+
+        // Navigation properties
+        public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
     }
 }
