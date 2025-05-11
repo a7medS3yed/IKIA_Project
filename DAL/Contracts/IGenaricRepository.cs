@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities.Common;
@@ -13,6 +14,8 @@ namespace DAL.Contracts
 
     {
         IEnumerable<TModel> GetAll(bool withTracking = false);
+
+        IEnumerable<TModel> GetAll(Expression<Func<TModel, bool>> predicate);
         TModel? Get(int id);
         int Create(TModel entity);
         int Update(TModel entity);

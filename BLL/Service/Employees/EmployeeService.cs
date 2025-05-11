@@ -11,9 +11,15 @@ namespace BLL.Service.Employees
 {
     public class EmployeeService(IEmployeeRepository _employeeRepository) : IEmployeeService
     {
-        public IEnumerable<EmployeeDto> GetAllEmployees()
+        public IEnumerable<EmployeeDto> GetAllEmployees(string? searchEmployeeName)
         {
-            var employees = _employeeRepository.GetAll().ToList();
+            IEnumerable<Employee> employees;
+
+            if(string.IsNullOrWhiteSpace(searchEmployeeName))
+                employees = _employeeRepository.GetAll();
+            else
+                employees = _employeeRepository.GetAll().Where(E => E.FirstName.ToLower().Contains(searchEmployeeName.ToLower()) || E.LastName.ToLower().Contains(searchEmployeeName.ToLower()));
+
 
             //foreach (var employee in employees)
             //    yield return new EmployeeDto(employee.Id, employee.FirstName, employee.LastName, employee.Age, employee.Salary, employee.IsActice, employee.Email, employee.Gender.ToString(), employee.EmployeeType.ToString(), employee?.Department?.Name ?? "No Department");

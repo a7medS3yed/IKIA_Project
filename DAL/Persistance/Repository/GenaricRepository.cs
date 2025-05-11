@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Contracts;
@@ -18,10 +19,14 @@ namespace DAL.Persistance.Repository
         public IEnumerable<TModel> GetAll(bool tracking = false)
         {
             if (!tracking)
-                return _dbContext.Set<TModel>().AsNoTracking();
+                return _dbContext.Set<TModel>().AsNoTracking().ToList();
 
             // if tracking is true, return the TModels with tracking
-            return _dbContext.Set<TModel>();
+            return _dbContext.Set<TModel>().ToList();
+        }
+        public IEnumerable<TModel> GetAll(Expression<Func<TModel, bool>> predicate)
+        {
+            return _dbContext.Set<TModel>().Where(predicate).ToList();
         }
 
         public TModel? Get(int id)

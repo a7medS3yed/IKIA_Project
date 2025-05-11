@@ -12,9 +12,9 @@ namespace PL.Controllers
         #region Inedex
 
         [HttpGet] //Employees/Index
-        public IActionResult Index()
+        public IActionResult Index(string? searchEmployeeName)
         {
-            var employees = _employeeService.GetAllEmployees().ToList();
+            var employees = _employeeService.GetAllEmployees(searchEmployeeName).ToList();
 
             var mappingEmployee = _mapper.Map<IEnumerable<EmployeeDto>, IEnumerable<EmployeesViewModel>>(employees);
 
