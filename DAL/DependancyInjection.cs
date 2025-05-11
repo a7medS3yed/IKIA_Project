@@ -20,7 +20,8 @@ namespace DAL
             // Add your DbContext and other persistence-related services here
             
             services.AddDbContext<ApplicationDbContext>(options =>
-              options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+              options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+                     .UseLazyLoadingProxies());
 
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();

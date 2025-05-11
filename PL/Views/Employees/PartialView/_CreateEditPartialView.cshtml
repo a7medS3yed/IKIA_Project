@@ -1,5 +1,10 @@
-﻿@using DAL.Enums
-@model EmployeeBaseViewModel
+﻿
+@model CreateEditBaseEmployee
+@inject IDepartmentService _DepartmentService
+@{
+	var departments = new SelectList(_DepartmentService.GetAllDepartments(), "Id", "Name");
+}
+
 
 <div class="form-group mb-3 col-6">
     <label class="form-label" asp-for="FirstName"></label>
@@ -62,6 +67,16 @@
     </select>
     <span asp-validation-for="EmployeeType" class="text-danger"></span>
 </div>
+
+<div class="form-group mb-3 col-6">
+    <label class="form-label" asp-for="DepartmentId"></label>
+    <select asp-for="DepartmentId" asp-items="departments"
+            class="form-control">
+        <option value="@null">Select Department</option>
+    </select>
+    <span asp-validation-for="EmployeeType" class="text-danger"></span>
+</div>
+
 <div class="form-group mb-3 col-6">
     <input asp-for="IsActive" class="form-check-input" />
     <label class="col-form-label" asp-for="IsActive"></label>

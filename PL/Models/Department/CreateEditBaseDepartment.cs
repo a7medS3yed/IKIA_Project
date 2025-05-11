@@ -2,7 +2,7 @@
 
 namespace PL.Models.Department
 {
-    public class DepartmentBaseViewModel
+    public class CreateEditBaseDepartment
     {
         public required string Name { get; set; }
         public required string Code { get; set; }

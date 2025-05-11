@@ -1,5 +1,4 @@
-﻿@using DAL.Enums
-@model UpdationEmployeeViewModel
+﻿@model UpdationEmployeeViewModel
 @{
     ViewData["Title"] = "Edit";
 }
@@ -9,7 +8,8 @@
     <form method="post" asp-controller="Employees" asp-action="Edit" class="row col-8">
         <div asp-validation-summary="ModelOnly"></div>
         
-        <partial name="PartialView/_CreateEditPartialVew" model="Model" />
+        @* <partial name="PartialView/_CreateEditPartialVew" model="Model" /> *@
+        @Html.Partial("PartialView/_CreateEditPartialView", Model)
 
         <div class="mt-4 m-auto">
             <input class="btn btn-success" type="submit" value="Save" />

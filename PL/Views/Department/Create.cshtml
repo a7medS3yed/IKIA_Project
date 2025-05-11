@@ -9,7 +9,8 @@
 
     <form class="col-8" method="post" asp-controller="Department" asp-action="Create">
 
-		<partial name="PartialView/_CreateEditPartialView" model="Model" />
+		@* <partial name="PartialView/_CreateEditPartialView" model="Model" /> *@
+        @Html.Partial("PartialView/_CreateEditPartialView", Model)
 
         <div class="mt-4 m-auto">
             <input class="btn btn-primary" type="submit" value="Create" />

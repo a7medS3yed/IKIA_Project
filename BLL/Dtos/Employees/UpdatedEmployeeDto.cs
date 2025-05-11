@@ -7,6 +7,6 @@ using DAL.Enums;
 
 namespace BLL.Dtos.Employees
 {
-    public record UpdatedEmployeeDto(int Id, string FirstName, string LastName, int? Age, string? Address, decimal Salary, bool IsActive, string? Email, string? PhoneNumber, DateOnly HiringDate, Gender Gender, EmployeeType EmployeeType);
+    public record UpdatedEmployeeDto(int Id, string FirstName, string LastName, int? Age, string? Address, decimal Salary, bool IsActive, string? Email, string? PhoneNumber, DateOnly HiringDate, Gender Gender, EmployeeType EmployeeType, int? DepartmentId);
     
 }

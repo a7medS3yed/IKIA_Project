@@ -19,5 +19,10 @@ namespace PL.Models.Employees
         [Display(Name = "Is Active")]
         public bool IsActive { get; set; }
         public required string Gender { get; set; }
+
+        //[Display(Name ="Departments")]
+        //public int? DepartmentId { get; set; }
+
+        public string? Department { get; set; }
     }
 }

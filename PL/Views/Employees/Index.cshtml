@@ -17,6 +17,7 @@
                 <th>@Html.DisplayNameFor(e => e.Email)</th>
                 <th>@Html.DisplayNameFor(e => e.EmployeeType)</th>
                 <th>@Html.DisplayNameFor(e => e.Age)</th>
+                <th>@Html.DisplayNameFor(e => e.Department)</th>
                 <th>@Html.DisplayNameFor(e => e.Salary)</th>
                 <th>@Html.DisplayNameFor(e => e.IsActive)</th>
                 <th>@Html.DisplayNameFor(e => e.Gender)</th>
@@ -34,11 +35,13 @@
                     <td>@employee.Email</td>
                     <td>@employee.EmployeeType</td>
                     <td>@employee.Age</td>
+                    <td>@employee.Department</td>
                     <td>@Html.DisplayFor(e => employee.Salary)</td>
                     <td class="badge text-white mt-1 @(employee.IsActive ? "bg-success" : "bg-danger")">@employee.IsActive</td>
                     <td>@employee.Gender</td>
 
-					<partial name="_BottomsPartialView" model="@employee.Id" />
+					@* <partial name="_BottomsPartialView" model="@employee.Id" /> *@
+					@Html.Partial("_BottomsPartialView", employee.Id)
 
                     <td>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@employee.Id">

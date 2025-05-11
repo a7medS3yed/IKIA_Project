@@ -9,7 +9,9 @@
 
     <form method="post" asp-route-id="@Model.Id" asp-controller="Department" asp-action="Edit" class="col-8">
 
-		<partial name="PartialView/_CreateEditPartialView" model="Model" />
+		@* <partial name="PartialView/_CreateEditPartialView" model="Model" /> *@
+        @Html.Partial("PartialView/_CreateEditPartialView", Model)
+       
 
         <div class="mt-4 m-auto">
             <input class="btn btn-success" type="submit" value="Edit" />

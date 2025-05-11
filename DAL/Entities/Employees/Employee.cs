@@ -26,6 +26,6 @@ namespace DAL.Entities.Employees
 
         public int? DepartmentId { get; set; }
         // Navigational Property
-        public Department? Department { get; set; }
+        public virtual Department? Department { get; set; }
     }
 }

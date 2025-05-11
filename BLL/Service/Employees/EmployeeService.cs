@@ -13,10 +13,15 @@ namespace BLL.Service.Employees
     {
         public IEnumerable<EmployeeDto> GetAllEmployees()
         {
-            var employees = _employeeRepository.GetAll();
+            var employees = _employeeRepository.GetAll().ToList();
 
-            foreach (var employee in employees)
-                yield return new EmployeeDto(employee.Id, employee.FirstName, employee.LastName, employee.Age, employee.Salary, employee.IsActice, employee.Email, employee.Gender.ToString(), employee.EmployeeType.ToString());
+            //foreach (var employee in employees)
+            //    yield return new EmployeeDto(employee.Id, employee.FirstName, employee.LastName, employee.Age, employee.Salary, employee.IsActice, employee.Email, employee.Gender.ToString(), employee.EmployeeType.ToString(), employee?.Department?.Name ?? "No Department");
+
+            var employeesToReturn = employees.Select(E => new EmployeeDto(E.Id, E.FirstName, E.LastName, E.Age,
+                E.Salary, E.IsActice, E.Email, E.Gender.ToString(), E.EmployeeType.ToString(), E.Department?.Name ?? "No Department")
+            );
+            return employeesToReturn;
         }
 
         public EmployeeDetailsDto? GetEmployeeById(int id)
@@ -28,7 +33,7 @@ namespace BLL.Service.Employees
 
             return new EmployeeDetailsDto(employee.Id, employee.FirstName, employee.LastName, employee.Age, employee.Address, employee.Salary, employee.IsActice,
                 employee.Email, employee.PhoneNumber, employee.HiringDate, employee.Gender.ToString(), employee.EmployeeType.ToString(), employee.CreatedBy, employee
-                .CreatedOn, employee.LastModifiedBy, employee.LastModifiedOn);
+                .CreatedOn, employee.LastModifiedBy, employee.LastModifiedOn, employee?.Department?.Name ?? "No Department");
         }
 
         public int CreateEmployee(CreateEmployeeDto employee)
@@ -47,7 +52,8 @@ namespace BLL.Service.Employees
                 Gender = employee.Gender,
                 EmployeeType = employee.EmployeeType,
                 CreatedBy = "System",
-                LastModifiedBy = "System"
+                LastModifiedBy = "System",
+                DepartmentId = employee.DepartmentId
             };
 
             return _employeeRepository.Create(creationEmployee);
@@ -70,7 +76,8 @@ namespace BLL.Service.Employees
                 Gender = employee.Gender,
                 EmployeeType = employee.EmployeeType,
                 CreatedBy = "System",
-                LastModifiedBy = "System"
+                LastModifiedBy = "System",
+                DepartmentId= employee.DepartmentId,
             };
 
             return _employeeRepository.Update(updatedEmployee);

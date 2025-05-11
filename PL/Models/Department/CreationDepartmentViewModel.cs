@@ -2,8 +2,8 @@
 
 namespace PL.Models.Department
 {
-    public class CreationDepartmentViewModel : DepartmentBaseViewModel
+    public class CreationDepartmentViewModel : CreateEditBaseDepartment
     {
-       
+        
     }
 }

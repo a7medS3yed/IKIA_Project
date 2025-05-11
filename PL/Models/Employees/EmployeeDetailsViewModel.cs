@@ -35,5 +35,8 @@ namespace PL.Models.Employees
         [Display(Name = "Last Modified On")]
         public DateTime LastModifiedOn { get; set; }
 
+        //public int? DepartmentId { get; set; }
+        [Display(Name = "Department")]
+        public string? DepartmentName { get; set; }
     }
 }

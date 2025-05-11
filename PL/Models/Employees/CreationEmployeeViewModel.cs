@@ -2,8 +2,8 @@
 
 namespace PL.Models.Employees
 {
-    public class CreationEmployeeViewModel : EmployeeBaseViewModel
+    public class CreationEmployeeViewModel : CreateEditBaseEmployee
     {
-        
+       
     }
 }

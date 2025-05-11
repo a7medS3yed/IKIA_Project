@@ -48,7 +48,8 @@
                     <td>@Html.DisplayFor(d => department.Name)</td>
                     <td>@Html.DisplayFor(d => department.CreationDate)</td>
 
-                    <partial name="_BottomsPartialView" model="department.Id" />
+                    @* <partial name="_BottomsPartialView" model="department.Id" /> *@
+                    @Html.Partial("_BottomsPartialView", department.Id)
 
                     <td>
                         <!-- Trigger modal -->

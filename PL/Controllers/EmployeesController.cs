@@ -14,7 +14,7 @@ namespace PL.Controllers
         [HttpGet] //Employees/Index
         public IActionResult Index()
         {
-            var employees = _employeeService.GetAllEmployees();
+            var employees = _employeeService.GetAllEmployees().ToList();
 
             var mappingEmployee = _mapper.Map<IEnumerable<EmployeeDto>, IEnumerable<EmployeesViewModel>>(employees);
 

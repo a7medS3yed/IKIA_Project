@@ -2,7 +2,7 @@
 
 namespace PL.Models.Employees
 {
-    public class EmployeeBaseViewModel
+    public class CreateEditBaseEmployee
     {
         [Display(Name = "First Name")]
         public required string FirstName { get; set; }
@@ -22,5 +22,8 @@ namespace PL.Models.Employees
         public required string Gender { get; set; }
         [Display(Name = "Employee Type")]
         public required string EmployeeType { get; set; }
+
+        [Display(Name = "Departments")]
+        public int? DepartmentId { get; set; }
     }
 }

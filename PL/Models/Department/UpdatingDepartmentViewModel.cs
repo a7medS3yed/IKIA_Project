@@ -2,9 +2,11 @@
 
 namespace PL.Models.Department
 {
-    public class UpdatingDepartmentViewModel : DepartmentBaseViewModel
+    public class UpdatingDepartmentViewModel : CreateEditBaseDepartment
     {
         public int Id { get; set; }
+
         
+
     }
 }

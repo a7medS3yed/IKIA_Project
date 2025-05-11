@@ -2,9 +2,9 @@
 
 namespace PL.Models.Employees
 {
-    public class UpdationEmployeeViewModel : EmployeeBaseViewModel
+    public class UpdationEmployeeViewModel : CreateEditBaseEmployee
     {
         public int Id { get; set; }
-       
+
     }
 }
