@@ -10,11 +10,11 @@ using Route.Demo.BLL.Dtos.Departments;
 
 namespace BLL.Service.Departments
 {
-    public class DepartmentService(IDepartmentRepository _departmentRepository) : IDepartmentService
+    public class DepartmentService(IUnitOfWork _unitOfWork) : IDepartmentService
     {
         public IEnumerable<DepartmentsDto> GetAllDepartments()
         {
-            var departments = _departmentRepository.GetAll();
+            var departments = _unitOfWork.Departments.GetAll();
 
             foreach (var department in departments)
                 yield return new DepartmentsDto(department.Id, department.Code, department.Name, department.CreationDate);
@@ -22,7 +22,7 @@ namespace BLL.Service.Departments
 
         public DepartmentDetailsDto? GetDepartmentById(int id)
         {
-            var department = _departmentRepository.Get(id);
+            var department = _unitOfWork.Departments.Get(id);
 
             if (department is null)
                 return null;
@@ -42,7 +42,8 @@ namespace BLL.Service.Departments
                 LastModifiedBy = ""
             };
 
-            return _departmentRepository.Create(newDepartment);
+            _unitOfWork.Departments.Create(newDepartment);
+            return _unitOfWork.SaveChanges();
         }
 
         public int UpdateDepartment(UpdatingDepartmentDto department)
@@ -58,11 +59,16 @@ namespace BLL.Service.Departments
                 LastModifiedBy = ""
             };
 
-            return _departmentRepository.Update(updatedDepartment);
+            _unitOfWork.Departments.Update(updatedDepartment);
+            return _unitOfWork.SaveChanges();
         }
 
         public bool DeleteDepartment(int id)
-            =>_departmentRepository.Delete(id) > 0;
+        {
+            _unitOfWork.Departments.Delete(id);
+            return _unitOfWork.SaveChanges() > 0;
+        }
+            
 
     }
 }

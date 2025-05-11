@@ -17,8 +17,8 @@ namespace DAL.Contracts
 
         IEnumerable<TModel> GetAll(Expression<Func<TModel, bool>> predicate);
         TModel? Get(int id);
-        int Create(TModel entity);
-        int Update(TModel entity);
-        int Delete(int id);
+        void Create(TModel entity);
+        void Update(TModel entity);
+        void Delete(int id);
     }
 }

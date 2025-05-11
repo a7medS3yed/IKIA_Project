@@ -7,6 +7,7 @@ using DAL.Contracts;
 using DAL.Persistance.Data;
 using DAL.Persistance.Data.DbInitializer;
 using DAL.Persistance.Repository;
+using DAL.Persistance.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +27,8 @@ namespace DAL
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             return services;
         }

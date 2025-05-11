@@ -25,10 +25,8 @@ namespace DAL.Persistance.Repository
             return _dbContext.Set<TModel>().ToList();
         }
         public IEnumerable<TModel> GetAll(Expression<Func<TModel, bool>> predicate)
-        {
-            return _dbContext.Set<TModel>().Where(predicate).ToList();
-        }
-
+           => _dbContext.Set<TModel>().Where(predicate).ToList();
+        
         public TModel? Get(int id)
         {
             var model = _dbContext.Set<TModel>().Find(id);
@@ -39,27 +37,19 @@ namespace DAL.Persistance.Repository
             return model;
         }
 
-        public int Create(TModel model)
-        {
-            var addModel = _dbContext.Set<TModel>().Add(model);
-            return _dbContext.SaveChanges();
-        }
-
-        public int Update(TModel model)
-        {
-            var updatedModel = _dbContext.Set<TModel>().Update(model);
-            return _dbContext.SaveChanges();
-        }
-
-        public int Delete(int id)
+        public void Create(TModel model)
+            => _dbContext.Set<TModel>().Add(model);
+                   
+        public void Update(TModel model)
+            => _dbContext.Set<TModel>().Update(model);
+                 
+        public void Delete(int id)
         {
             var model = _dbContext.Set<TModel>().Find(id);
 
-            if (model == null)
-                return 0;
-
-            _dbContext.Set<TModel>().Remove(model);
-            return _dbContext.SaveChanges();
+            if (model != null)
+                _dbContext.Set<TModel>().Remove(model);
+            
         }
 
     }

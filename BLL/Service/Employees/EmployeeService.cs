@@ -9,16 +9,16 @@ using DAL.Entities.Employees;
 
 namespace BLL.Service.Employees
 {
-    public class EmployeeService(IEmployeeRepository _employeeRepository) : IEmployeeService
+    public class EmployeeService(IUnitOfWork _unitOfWork) : IEmployeeService
     {
         public IEnumerable<EmployeeDto> GetAllEmployees(string? searchEmployeeName)
         {
             IEnumerable<Employee> employees;
 
             if(string.IsNullOrWhiteSpace(searchEmployeeName))
-                employees = _employeeRepository.GetAll();
+                employees = _unitOfWork.Employees.GetAll();
             else
-                employees = _employeeRepository.GetAll().Where(E => E.FirstName.ToLower().Contains(searchEmployeeName.ToLower()) || E.LastName.ToLower().Contains(searchEmployeeName.ToLower()));
+                employees = _unitOfWork.Employees.GetAll().Where(E => E.FirstName.ToLower().Contains(searchEmployeeName.ToLower()) || E.LastName.ToLower().Contains(searchEmployeeName.ToLower()));
 
 
             //foreach (var employee in employees)
@@ -32,7 +32,7 @@ namespace BLL.Service.Employees
 
         public EmployeeDetailsDto? GetEmployeeById(int id)
         {
-            var employee = _employeeRepository.Get(id);
+            var employee = _unitOfWork.Employees.Get(id);
 
             if (employee == null)
                 return null;
@@ -62,7 +62,8 @@ namespace BLL.Service.Employees
                 DepartmentId = employee.DepartmentId
             };
 
-            return _employeeRepository.Create(creationEmployee);
+             _unitOfWork.Employees.Create(creationEmployee);
+            return _unitOfWork.SaveChanges();
         }
 
         public int UpdateEmployee(UpdatedEmployeeDto employee)
@@ -86,10 +87,21 @@ namespace BLL.Service.Employees
                 DepartmentId= employee.DepartmentId,
             };
 
-            return _employeeRepository.Update(updatedEmployee);
+            _unitOfWork.Employees.Update(updatedEmployee);
+            return _unitOfWork.SaveChanges();
         }
         public bool DeleteEmployee(int id)
-            => _employeeRepository.Delete(id) > 0;
+        {
+           _unitOfWork.Employees.Delete(id) ;
+
+            var result = _unitOfWork.SaveChanges();
+            if (result > 0)
+                return true;
+            return false;
+
+
+        }
+            
   
     }
 }
